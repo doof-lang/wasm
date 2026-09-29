@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "dependencies": [
+    {
+      "name": "wamr",
+      "kind": "git",
+      "url": "https://github.com/bytecodealliance/wasm-micro-runtime.git",
+      "destination": "vendor/wamr",
+      "ref": "WAMR-2.4.5",
+      "commit": "25bd7eb63e828e4bd242cc9b38d260b4b31c6605",
+      "keep": [
+        "LICENSE",
+        "ATTRIBUTIONS.md",
+        "core/config.h",
+        "core/version.h",
+        "core/iwasm/include",
+        "core/iwasm/common",
+        "core/iwasm/aot/aot_runtime.h",
+        "core/iwasm/compilation/aot.h",
+        "core/iwasm/interpreter",
+        "core/iwasm/libraries/thread-mgr",
+        "core/iwasm/libraries/lib-wasi-threads/lib_wasi_threads_wrapper.c",
+        "core/iwasm/libraries/lib-wasi-threads/tid_allocator.c",
+        "core/iwasm/libraries/lib-wasi-threads/tid_allocator.h",
+        "core/shared/utils",
+        "core/shared/mem-alloc",
+        "core/shared/platform/include",
+        "core/shared/platform/common/posix",
+        "core/shared/platform/common/memory",
+        "core/shared/platform/darwin",
+        "core/shared/platform/linux",
+        "core/shared/platform/windows"
+      ]
+    }
+  ]
+}

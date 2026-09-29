@@ -1,0 +1,177 @@
+{
+  "name": "std/wasm",
+  "version": "0.2.0",
+  "license": "ISC",
+  "build": {
+    "native": {
+      "includePaths": [
+        "vendor/wamr/core",
+        "vendor/wamr/core/iwasm/include",
+        "vendor/wamr/core/iwasm/common",
+        "vendor/wamr/core/iwasm/interpreter",
+        "vendor/wamr/core/iwasm/libraries/thread-mgr",
+        "vendor/wamr/core/iwasm/libraries/lib-wasi-threads",
+        "vendor/wamr/core/shared/utils",
+        "vendor/wamr/core/shared/mem-alloc",
+        "vendor/wamr/core/shared/platform/include"
+      ],
+      "sourceFiles": [
+        "vendor/wamr/core/iwasm/common/wasm_application.c",
+        "vendor/wamr/core/iwasm/common/wasm_blocking_op.c",
+        "vendor/wamr/core/iwasm/common/wasm_c_api.c",
+        "vendor/wamr/core/iwasm/common/wasm_exec_env.c",
+        "vendor/wamr/core/iwasm/common/wasm_loader_common.c",
+        "vendor/wamr/core/iwasm/common/wasm_memory.c",
+        "vendor/wamr/core/iwasm/common/wasm_native.c",
+        "vendor/wamr/core/iwasm/common/wasm_runtime_common.c",
+        "vendor/wamr/core/iwasm/common/wasm_shared_memory.c",
+        "vendor/wamr/core/iwasm/common/arch/invokeNative_general.c",
+        "vendor/wamr/core/iwasm/interpreter/wasm_interp_fast.c",
+        "vendor/wamr/core/iwasm/interpreter/wasm_loader.c",
+        "vendor/wamr/core/iwasm/interpreter/wasm_runtime.c",
+        "vendor/wamr/core/iwasm/libraries/thread-mgr/thread_manager.c",
+        "vendor/wamr/core/iwasm/libraries/lib-wasi-threads/lib_wasi_threads_wrapper.c",
+        "vendor/wamr/core/iwasm/libraries/lib-wasi-threads/tid_allocator.c",
+        "vendor/wamr/core/shared/utils/bh_assert.c",
+        "vendor/wamr/core/shared/utils/bh_bitmap.c",
+        "vendor/wamr/core/shared/utils/bh_common.c",
+        "vendor/wamr/core/shared/utils/bh_hashmap.c",
+        "vendor/wamr/core/shared/utils/bh_leb128.c",
+        "vendor/wamr/core/shared/utils/bh_list.c",
+        "vendor/wamr/core/shared/utils/bh_log.c",
+        "vendor/wamr/core/shared/utils/bh_queue.c",
+        "vendor/wamr/core/shared/utils/bh_vector.c",
+        "vendor/wamr/core/shared/utils/runtime_timer.c",
+        "vendor/wamr/core/shared/mem-alloc/mem_alloc.c",
+        "vendor/wamr/core/shared/mem-alloc/ems/ems_alloc.c",
+        "vendor/wamr/core/shared/mem-alloc/ems/ems_gc.c",
+        "vendor/wamr/core/shared/mem-alloc/ems/ems_hmu.c",
+        "vendor/wamr/core/shared/mem-alloc/ems/ems_kfc.c",
+        "vendor/wamr/core/shared/platform/common/memory/mremap.c",
+        "native_wasm_wamr.c"
+      ],
+      "defines": [
+        "BH_MALLOC=wasm_runtime_malloc",
+        "BH_FREE=wasm_runtime_free",
+        "WASM_ENABLE_INTERP=1",
+        "WASM_ENABLE_FAST_INTERP=1",
+        "WASM_ENABLE_BULK_MEMORY=1",
+        "WASM_ENABLE_REF_TYPES=1",
+        "WASM_ENABLE_SHARED_MEMORY=1",
+        "WASM_ENABLE_THREAD_MGR=1",
+        "WASM_ENABLE_LIB_WASI_THREADS=1",
+        "WASM_ENABLE_HEAP_AUX_STACK_ALLOCATION=1",
+        "WASM_ENABLE_INSTRUCTION_METERING=1",
+        "WASM_DISABLE_HW_BOUND_CHECK=1",
+        "WASM_DISABLE_STACK_HW_BOUND_CHECK=1",
+        "WASM_DISABLE_WAKEUP_BLOCKING_OP=1",
+        "WASM_HAVE_MREMAP=0"
+      ],
+      "extraCopyPaths": [
+        "native_wasm.hpp",
+        "native_wasm_engine.hpp",
+        "native_wasm_imports.hpp",
+        "native_wasm_instance.hpp",
+        "native_wasm_link.hpp",
+        "native_wasm_memory.hpp",
+        "native_wasm_values.hpp",
+        "vendor/wamr/LICENSE",
+        "vendor/wamr/ATTRIBUTIONS.md",
+        "vendor/wamr/core/iwasm/include"
+      ],
+      "macos": {
+        "defines": [
+          "BH_PLATFORM_DARWIN"
+        ],
+        "includePaths": [
+          "vendor/wamr/core/shared/platform/darwin"
+        ],
+        "sourceFiles": [
+          "vendor/wamr/core/shared/platform/darwin/platform_init.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_blocking_op.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_malloc.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_memmap.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_sleep.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_thread.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_time.c"
+        ]
+      },
+      "iosSimulator": {
+        "defines": [
+          "BH_PLATFORM_DARWIN"
+        ],
+        "includePaths": [
+          "vendor/wamr/core/shared/platform/darwin"
+        ],
+        "sourceFiles": [
+          "vendor/wamr/core/shared/platform/darwin/platform_init.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_blocking_op.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_malloc.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_memmap.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_sleep.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_thread.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_time.c"
+        ]
+      },
+      "iosDevice": {
+        "defines": [
+          "BH_PLATFORM_DARWIN"
+        ],
+        "includePaths": [
+          "vendor/wamr/core/shared/platform/darwin"
+        ],
+        "sourceFiles": [
+          "vendor/wamr/core/shared/platform/darwin/platform_init.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_blocking_op.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_malloc.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_memmap.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_sleep.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_thread.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_time.c"
+        ]
+      },
+      "linux": {
+        "defines": [
+          "BH_PLATFORM_LINUX"
+        ],
+        "includePaths": [
+          "vendor/wamr/core/shared/platform/linux"
+        ],
+        "sourceFiles": [
+          "vendor/wamr/core/shared/platform/linux/platform_init.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_blocking_op.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_malloc.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_memmap.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_sleep.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_thread.c",
+          "vendor/wamr/core/shared/platform/common/posix/posix_time.c"
+        ]
+      },
+      "windows": {
+        "defines": [
+          "BH_PLATFORM_WINDOWS",
+          "HAVE_STRUCT_TIMESPEC",
+          "_WINSOCK_DEPRECATED_NO_WARNINGS"
+        ],
+        "includePaths": [
+          "vendor/wamr/core/shared/platform/windows"
+        ],
+        "sourceFiles": [
+          "vendor/wamr/core/shared/platform/windows/platform_init.c",
+          "vendor/wamr/core/shared/platform/windows/win_atomic.cpp",
+          "vendor/wamr/core/shared/platform/windows/win_clock.c",
+          "vendor/wamr/core/shared/platform/windows/win_malloc.c",
+          "vendor/wamr/core/shared/platform/windows/win_memmap.c",
+          "vendor/wamr/core/shared/platform/windows/win_socket.c",
+          "vendor/wamr/core/shared/platform/windows/win_thread.c",
+          "vendor/wamr/core/shared/platform/windows/win_time.c",
+          "vendor/wamr/core/shared/platform/windows/win_util.c"
+        ],
+        "linkLibraries": [
+          "ws2_32"
+        ]
+      }
+    }
+  },
+  "dependencies": {}
+}

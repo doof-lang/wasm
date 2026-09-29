@@ -1,0 +1,10 @@
+(module
+  (func (export "id_i64") (param i64) (result i64)
+    local.get 0)
+  (func (export "id_f32") (param f32) (result f32)
+    local.get 0)
+  (func (export "id_f64") (param f64) (result f64)
+    local.get 0)
+  (func (export "trap")
+    unreachable)
+)
